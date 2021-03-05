@@ -27,7 +27,6 @@ node_modules
 bower_components
 coverage
 data
-db
 dist
 debug.log
 dump.rdb
