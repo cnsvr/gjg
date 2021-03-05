@@ -1,0 +1,473 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "GJG API",
+    "description": "API documentation of GJG",
+    "version": "v1"
+  },
+  "host": "localhost:8000",
+  "schemes": [
+    "http"
+  ],
+  "basePath": "/",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "Please write \"Bearer\" before the key"
+    }
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ],
+  "paths": {
+    "/leaderboard/": {
+      "get": {
+        "operationId": "leaderboard_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "number",
+            "default": 10
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "number",
+            "default": 0
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LeaderBoard"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Leader Board"
+        ]
+      }
+    },
+    "/leaderboard/{country_iso_code}": {
+      "get": {
+        "operationId": "country_iso_code",
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "number",
+            "default": 10
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "type": "number",
+            "default": 0
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/LeaderBoard"
+              }
+            }
+          }
+        },
+        "tags": [
+          "Leader Board"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "country_iso_code",
+          "in": "path",
+          "description": "A country code.",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/user/create": {
+      "post": {
+        "operationId": "user_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserCreate"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UserCreateBadRequest"
+            }
+          },
+          "409": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UserConflict"
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/login": {
+      "post": {
+        "operationId": "user_login",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserLogin"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UserToken"
+            }
+          },
+          "400": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UserLoginWrongPassword"
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UserNotFound"
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/user/profile/{guid}/": {
+      "get": {
+        "operationId": "user_read",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UserNotFound"
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "guid",
+          "in": "path",
+          "description": "A unique integer value identifying this user.",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/score/create": {
+      "post": {
+        "operationId": "score_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "score_worth": {
+                  "title": "Score worth",
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Score"
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AutheticationFail"
+            }
+          }
+        },
+        "tags": [
+          "Score"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "LeaderBoard": {
+      "type": "object",
+      "properties": {
+        "rank": {
+          "title": "Rank",
+          "type": "integer",
+          "readOnly": true,
+          "default": 1
+        },
+        "points": {
+          "title": "Points",
+          "type": "integer",
+          "readOnly": true,
+          "default": 98565
+        },
+        "display_name": {
+          "title": "Display name",
+          "type": "string",
+          "readOnly": true,
+          "default": "gjg_user"
+        },
+        "country": {
+          "title": "Countryy",
+          "type": "string",
+          "readOnly": true,
+          "default": "tr"
+        }
+      }
+    },
+    "Score": {
+      "type": "object",
+      "properties": {
+        "score_worth": {
+          "title": "Score worth",
+          "type": "integer"
+        },
+        "user_id": {
+          "title": "User ID",
+          "type": "string"
+        },
+        "createdAt": {
+          "title": "Timestamp",
+          "type": "string"
+        }
+      }
+    },
+    "AutheticationFail": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "title": "Error messege",
+          "type": "string",
+          "default": "Authentication failed"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "title": "User ID",
+          "type": "string",
+          "default": ""
+        },
+        "display_name": {
+          "title": "Display name",
+          "type": "string",
+          "default": ""
+        },
+        "points": {
+          "title": "Points",
+          "type": "number",
+          "default": 0
+        },
+        "rank": {
+          "title": "Rank",
+          "type": "number",
+          "default": 0
+        }
+      }
+    },
+    "UserToken": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "title": "User ID",
+          "type": "string",
+          "default": ""
+        },
+        "display_name": {
+          "title": "Display name",
+          "type": "string",
+          "default": ""
+        },
+        "points": {
+          "title": "Points",
+          "type": "number",
+          "default": 0
+        },
+        "rank": {
+          "title": "Rank",
+          "type": "number",
+          "default": 0
+        },
+        "token": {
+          "title": "Token",
+          "type": "object",
+          "properties": {
+            "expiresIn": {
+              "title": "Expires in",
+              "description": "3600 - an hour",
+              "type": "integer",
+              "default": 3600
+            },
+            "token": {
+              "title": "Token",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "UserCreate": {
+      "type": "object",
+      "properties": {
+        "display_name": {
+          "title": "Display name",
+          "type": "string",
+          "default": ""
+        },
+        "password": {
+          "title": "Password",
+          "type": "string",
+          "default": ""
+        },
+        "confirmPassword": {
+          "title": "Confirmation",
+          "type": "string",
+          "default": ""
+        },
+        "country": {
+          "title": "Country",
+          "type": "string",
+          "default": ""
+        }
+      }
+    },
+    "UserCreateBadRequest": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "title": "Error messege",
+          "type": "string",
+          "default": ""
+        }
+      }
+    },
+    "UserLogin": {
+      "type": "object",
+      "properties": {
+        "display_name": {
+          "title": "Display name",
+          "type": "string",
+          "default": ""
+        },
+        "password": {
+          "title": "Password",
+          "type": "string",
+          "default": ""
+        }
+      }
+    },
+    "UserNotFound": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "title": "Error messege",
+          "type": "string",
+          "default": "User not found."
+        }
+      }
+    },
+    "UserLoginWrongPassword": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "title": "Error messege",
+          "type": "string",
+          "default": "Wrong credentials"
+        }
+      }
+    },
+    "UserConflict": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "title": "Error message",
+          "type": "string",
+          "default": "Account with that display name already exists."
+        }
+      }
+    }
+  }
+}

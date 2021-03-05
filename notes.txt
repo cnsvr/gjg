@@ -1,0 +1,9 @@
+Data Model
+
+MongoDB’s flexible schema means that you can change your data layer just as quickly as you change your game. 
+Need to add new items with new kinds of stats, fix a level, or start storing new player data? 
+No problem. Plus, MongoDB stores data as JSON-like documents – you’re probably already using JSON in game memory, 
+and storing objects in the same structure makes your life easier.
+
+MongoDB is a document database with the scalability and flexibility that you want with the querying and 
+indexing that you need
