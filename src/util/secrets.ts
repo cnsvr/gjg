@@ -15,6 +15,7 @@ if(fs.existsSync(".env")) {
 export const ENVIRONMENT = process.env.NODE_ENV;
 export const REDIS_URL = process.env["REDIS_URL"];
 const prod = ENVIRONMENT === "production";
+const development = ENVIRONMENT === "development";
 const test = ENVIRONMENT === "test";
 
 export const SESSION_SECRET = process.env["SESSION_SECRET"];
@@ -33,7 +34,7 @@ if (!SESSION_SECRET) {
 if (!MONGODB_URI) {
   if (prod) {
       logger.error("No mongo connection string. Set MONGODB_URI environment variable.");
-  } else {
+  } else if (development) {
       logger.error("No mongo connection string. Set MONGODB_URI_LOCAL environment variable.");
   }
   process.exit(1);

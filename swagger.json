@@ -5,9 +5,10 @@
     "description": "API documentation of GJG",
     "version": "v1"
   },
-  "host": "localhost:8000",
+  "host": "",
   "schemes": [
-    "http"
+    "http",
+    "https"
   ],
   "basePath": "/",
   "consumes": [

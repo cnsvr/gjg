@@ -2,9 +2,16 @@ import  Redis  from "ioredis";
 import logger from "../util/logger";
 import { UserResponse } from "../interfaces/user";
 import { LeaderBoardResponse } from "../interfaces/leaderboard";
-import { ENVIRONMENT, REDIS_URL } from "../util/secrets";
+import { ENVIRONMENT, REDIS_PASSWORD, REDIS_PORT, REDIS_HOST } from "../util/secrets";
 
-const redis = new Redis(REDIS_URL);
+const redis = new Redis({
+  port: Number(REDIS_PORT),
+  host: REDIS_HOST,
+  password: REDIS_PASSWORD,
+  tls: { 
+    servername: REDIS_HOST
+  },
+});
 
 redis.on("connect", () => {
   logger.info(`Connected to RedisDB successfully in ${ENVIRONMENT} mode`);

@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response, NextFunction } from "express";
 import process from "process";
 import bodyParser from "body-parser";
 import compression from "compression";
@@ -21,12 +21,15 @@ import * as leaderBoardController from "./controllers/leaderboard";
 const app = express();
 
 // Express configuration
-app.set("port", process.env.PORT || 3000);
+app.set("port", 8000);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(compression());
 app.use(cookieParser());
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/api-docs", (req: Request, res: Response, next: NextFunction) => { 
+  swaggerDocument.host = req.get("host");
+  next();
+}, swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 app.post("/user/create", userController.postUserCreate);

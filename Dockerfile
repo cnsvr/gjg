@@ -11,7 +11,7 @@ COPY swagger.json ./
 # copy source code to /app/src folder
 COPY src /app/src
 
-RUN npm install --slient
+RUN npm install --s
 
 EXPOSE 8000
 
