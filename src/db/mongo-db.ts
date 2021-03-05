@@ -22,4 +22,4 @@ const mongoConnection = async (): Promise<void> => {
 export {
   mongoConnection,
   mongoose
-}
+};
