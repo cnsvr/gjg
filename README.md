@@ -127,5 +127,11 @@ All users' display name will be test-{user_id}.
 
 
 
+ # TEST 
+ 
+ ```
+ npm test
+ ```
+ 
  
 
