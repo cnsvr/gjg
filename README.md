@@ -40,9 +40,9 @@ On the other side, in MongoDB, user information will be stored as a backup datab
 ## HOW TO RUN
 
 # Install dependencies
-  * Node
-  * Redis
-  * Mongo
+  * [Node](https://nodejs.org/en/download/)
+  * [Redis](https://redis.io/download)
+  * [Mongo](https://www.mongodb.com/try/download/community)
   
 # Environment Variables
 
