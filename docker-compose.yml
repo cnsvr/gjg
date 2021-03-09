@@ -6,8 +6,12 @@ services:
     build: .
     ports:
       - "8000:8000"
-    env_file: 
-      - ".env.example"
+    environment: 
+      - NODE_ENV=development
+      - MONGODB_URI_LOCAL=mongodb://mongo:27017/gjg
+      - SESSION_SECRET=GJGSECRET
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
     links:
       - redis
       - mongo
@@ -15,7 +19,7 @@ services:
     container_name: mongo
     image: "mongo:4.2"
     volumes:
-      - ./db:/data/db
+      - ./mongo_data:/data/db
     restart: always
     ports:
       - "27017:27017"
@@ -23,7 +27,7 @@ services:
     container_name: redis
     image: "redis:alpine"
     volumes:
-      - ./data:/data/redis
+      - ./redis_data:/data/redis
     restart: always
     expose:
       - "6379"

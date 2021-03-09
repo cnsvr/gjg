@@ -4,7 +4,6 @@ import mongoose from "mongoose";
 import { uuid } from "../util/uuid";
 import { SESSION_SECRET } from "../util/secrets";
 import { DataStoredInToken } from "../interfaces/user";
-import { NextFunction } from "express";
 
 
 

@@ -4,14 +4,21 @@ import { UserResponse } from "../interfaces/user";
 import { LeaderBoardResponse } from "../interfaces/leaderboard";
 import { ENVIRONMENT, REDIS_PASSWORD, REDIS_PORT, REDIS_HOST } from "../util/secrets";
 
-const redis = new Redis({
-  port: Number(REDIS_PORT),
-  host: REDIS_HOST,
-  password: REDIS_PASSWORD,
-  tls: { 
-    servername: REDIS_HOST
-  },
-});
+let redis: Redis.Redis;
+
+if (ENVIRONMENT === "development") {
+  redis = new Redis(Number(REDIS_PORT), REDIS_HOST);
+} else {
+  redis = new Redis({
+    port: Number(REDIS_PORT),
+    host: REDIS_HOST,
+    password: REDIS_PASSWORD,
+    tls: { 
+      servername: REDIS_HOST
+    },
+  });
+}
+
 
 redis.on("connect", () => {
   logger.info(`Connected to RedisDB successfully in ${ENVIRONMENT} mode`);

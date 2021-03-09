@@ -34,8 +34,10 @@ if (!SESSION_SECRET) {
 if (!MONGODB_URI) {
   if (prod) {
       logger.error("No mongo connection string. Set MONGODB_URI environment variable.");
-  } else if (development) {
+  }else if (development) {
       logger.error("No mongo connection string. Set MONGODB_URI_LOCAL environment variable.");
+  }else if (test) {
+    logger.error("No mongo connection string. Set MONGODB_URI_TEST environment variable.");
   }
   process.exit(1);
 }

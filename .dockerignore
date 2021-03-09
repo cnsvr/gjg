@@ -4,6 +4,7 @@ logs/
 #Ignoring git and cache folders
 .git
 .cache
+.env
 
 #Ignoring all the markdown and class files
 *.md

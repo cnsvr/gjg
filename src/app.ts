@@ -39,6 +39,14 @@ app.get("/leaderboard", leaderBoardController.getLeaderBoard);
 app.get("/leaderboard/:country_iso_code", leaderBoardController.getLeaderBoardWithCountryCode);
 app.get("/user/profile/:user_guid", userController.getUserProfile);
 
+/*
+app.get("*", function(req: Request, res: Response, next: NextFunction) {
+  res.redirect("/api-docs");
+  
+  next();
+});
+*/
+
 app.use(errorMiddleware);
 
 export default app;
