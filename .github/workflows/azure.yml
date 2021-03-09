@@ -37,4 +37,4 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            gjgregistry.azurecr.io/paperlayer-backend:${{ github.sha }}
+            gjgregistry.azurecr.io/gjg:${{ github.sha }}
