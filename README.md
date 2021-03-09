@@ -125,13 +125,20 @@ It creates thousands of users and inserts mongoDB and RedisDB with random points
 All users' display name will be test-{user_id}.
 
 
-
-
- ## TEST 
+## TEST 
  
  ```
  npm test
  ```
+
+## REFERENCES
+ * https://www.hindawi.com/journals/ijcgt/2018/3234873/
+ * https://dev.to/almogvc/mongodb-optimization-indexes-and-when-to-use-them-38kg
+ * https://medium.com/@hello_47260/database-choice-for-large-data-volume-73f36f171add
+ * https://www.mongodb.com/use-cases/gaming
+ * https://www.mongodb.com/big-data-explained/architecture
+ 
+ 
  
  
 
