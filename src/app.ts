@@ -1,5 +1,4 @@
 import express, { Request, Response, NextFunction } from "express";
-import process from "process";
 import bodyParser from "body-parser";
 import compression from "compression";
 import cookieParser from "cookie-parser";
