@@ -107,12 +107,12 @@ URL → [https://gjg.azurewebsites.net/api-docs](https://gjg.azurewebsites.net/a
 Notes: It's a basic server and it sleeps after a while. So, first response can take a little time. :)
 
 
-# API DOCUMENTATION
+## API DOCUMENTATION
 
 You can reach the API documentation from base_url/api-docs.
 Note: While using API endpoints, you must adjust scheme as http for localhost and as https for azure web site.
 
-# DUMP DATA
+## DUMP DATA
 
 If you want to insert data outside of the server, you can use the command below.
 
@@ -127,7 +127,7 @@ All users' display name will be test-{user_id}.
 
 
 
- # TEST 
+ ## TEST 
  
  ```
  npm test
