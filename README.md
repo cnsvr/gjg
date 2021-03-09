@@ -1,19 +1,10 @@
-* Server Side
-  - [x] Node.js - Express.js Installation  
-  - [x] Connection to DB. (MongoDB)
-  - [x] Register / Login / JWT
-  - [x] Middleware
-  - [x] Error Handling
-  - [x] Routers
-  - [x] Swagger Docs
+### GJG Backend Coding Challenge
+
+## General Information
 
 
-* DB Side
-  - [x] MongoDB Installation
-  - [x] Redis installation
-  - [x] Indexes -> points index
-  - [x] Collections -> User, Score
-  - [ ] Scalable Research ??
+Before starting the design of this system, I knew that I had little experience on the Client-Server systems but one of the most important challenges of this system is to design a system that gives response to users in a satisfied time, so in the backend side, I needed to manage all coming requests from the users and offload the network traffic to our server. To create a powerful system for big data, I need to choose the most proper database and use query optimization to get data from DB.  After I made some research about how to manage big data and choose the proper database, I found Redis DB that is an in-memory data structure store, used as a distributed, in-memory key–value database, cache and message broker, with optional durability. When I looked at the definition and usage of Redis, Redis, which stands for Remote Dictionary Server, is a fast, open-source, in-memory key-value data store for use as a database, cache, message broker, and queue. The project started when Salvatore Sanfilippo, the original developer of Redis, was trying to improve the scalability of his Italian startup. Redis now delivers sub-millisecond response times enabling millions of requests per second for real-time applications in Gaming, Ad-Tech, Financial Services, Healthcare, and IoT. Redis is a popular choice for caching, session management, gaming, leaderboards, real-time analytics, geospatial, ride-hailing, chat/messaging, media streaming, and pub/sub apps.
 
+Then, I decided to use Redis DB. For the backup database to keep other information of users, I used MongoDB that is classified as a NoSQL database program and uses JSON-like documents with optional schemas. I chose the MongoDB (NoSQL database) because it has a flexible schema feature and all games need changes and new features. Therefore, developers can change their data layer just as quickly as change their game. MongoDB stores data as JSON-like documents and storing objects in the same structure makes our life easier. I have designed this case with these ideas.
 
-* Unit Test
+In the Redis DB, I used the hash set to keep user information. For the Hash Set, I need the unique identifier to represent all users uniquely. To create a unique identifier, I used Timestamp, DOMHighResTimeStamp and a third-party library called nanoid. With concatenating all of them, a unique identifier of the user will be created. Even if any user creates a new account at the same time, with DOMHighResTimeStamp and nanoid, it is unlikely to create the same id. When any user creates a new account, his/her information will be stored in both RedisDB and MongoDB. In Redis DB, it stores in a hash set and the key will be “user:user_id” and value will be information of the user as field and value.
