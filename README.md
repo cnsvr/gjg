@@ -60,3 +60,23 @@ REDIS_PASSWORD= Azure RedisCache Password
 
 ```
 
+### Run in local environment
+
+```
+NODE_ENV=development
+MONGODB_URI_LOCAL=mongodb://localhost:27017/gjg
+SESSION_SECRET=TEST
+REDIS_HOST=localhost
+REDIS_PORT=6379
+```
+1. Clone the repository.
+2. Go to gjg folder.
+3. Run the commands below.
+``` bash
+npm install -g typescript
+npm install
+redis-server
+npm run dump numberOfUsers --> It is optional. You can create dump users in MongoDB and RedisDB
+npm run start
+```
+4. Go to http://localhost:8000/api-docs
