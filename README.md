@@ -104,6 +104,7 @@ npm run start
 ### This app was deployed on the Azure Server. 
 
 URL → [https://gjg.azurewebsites.net/api-docs](https://gjg.azurewebsites.net/api-docs)
+Notes: It's a basic server and it sleeps after a while. So, first response can take a little time. :)
 
 
 # API DOCUMENTATION
