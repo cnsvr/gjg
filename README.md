@@ -39,12 +39,12 @@ On the other side, in MongoDB, user information will be stored as a backup datab
 
 ## HOW TO RUN
 
-# Install dependencies
+### Install dependencies
   * [Node](https://nodejs.org/en/download/)
   * [Redis](https://redis.io/download)
   * [Mongo](https://www.mongodb.com/try/download/community)
   
-# Environment Variables
+### Environment Variables
 
 ```
 NODE_ENV= development  | production | test
@@ -80,3 +80,51 @@ npm run dump numberOfUsers --> It is optional. You can create dump users in Mong
 npm run start
 ```
 4. Go to http://localhost:8000/api-docs
+
+
+### Run with Docker
+
+### Install dependencies
+ * [Docker](https://www.docker.com/products/docker-desktop)
+
+ 1. Clone the repository.
+ 2. Go to gjg folder.
+ 3. Run the commands below.
+ 
+ ```bash
+ docker-compose up
+ docker-compose exec gjg_app npm run dump 100000 --> It is optional. It creates dump users in docker container.
+ 
+ ```
+4. Go to http://localhost:8000/api-docs
+
+
+## Deployment on the Azure Docker Container Server
+
+### This app was deployed on the Azure Server. 
+
+URL → [https://gjg.azurewebsites.net/api-docs](https://gjg.azurewebsites.net/api-docs)
+
+
+# API DOCUMENTATION
+
+You can reach the API documentation from base_url/api-docs.
+Note: While using API endpoints, you must adjust scheme as http for localhost and as https for azure web site.
+
+# DUMP DATA
+
+If you want to insert data outside of the server, you can use the command below.
+
+```bash
+npm run dump numberOfUsers → npm run dump 100000
+```
+
+It creates thousands of users and inserts mongoDB and RedisDB with random points.
+
+All users' display name will be test-{user_id}.
+
+
+
+
+ 
+
