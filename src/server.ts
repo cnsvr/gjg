@@ -7,6 +7,7 @@ import morgan from "morgan";
 if (process.env.NODE_ENV === "development") {
   app.use(errorHandler());
   app.use(morgan("dev"));
+  console.log("test");
 }
 
 if (process.env.NODE_ENV !== "test") {
